@@ -1,8 +1,12 @@
 # aula de hoje 
-- strings
-# amanha
 - array
-# depois
+# amanha
 - condicionais
+# depois
+- exercicios de logica
+- map
+- exercicios de logica
+- loop
+- exercicios de logica
 # exercicios com tudo que aprendemos
 # tuplas e segue os data types
