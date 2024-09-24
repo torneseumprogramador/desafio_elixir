@@ -6,6 +6,13 @@
 #   IO.puts("Infelizmente este não é o número da sorte ( #{numero} )")
 # end
 
+### unless ####
+# unless numero == 8 do # qualquer número que não seja o 8
+#   IO.puts("Parabéns vc acertou o número da sorte ( #{numero} )")
+# else
+#   IO.puts("Infelizmente este não é o número da sorte ( #{numero} )")
+# end
+
 # em casos de else if, precisa utilizar o cond "elixir não tem else if na sintaxe"
 # cond do
 #   numero == 8 -> IO.puts("Parabéns vc acertou o número da sorte ( #{numero} )")
