@@ -12,6 +12,43 @@ lista = tl(lista) # [2, 3, 4] # dados sem o primeiro da lista
 IO.inspect(lista)
 
 
+# No Elixir, listas são imutáveis, o que significa que você não pode modificar diretamente uma lista (como faria em linguagens com arrays mutáveis). Retorna uma lista nova
+lista = [2, 3, 4]
+lista = [1 | lista]  # Adiciona o valor 1 no início da lista
+IO.inspect(lista)
+# Output: [1, 2, 3, 4]
+
+lista = [1, 2, 3]
+lista = lista ++ [4]  # Adiciona o valor 4 no final da lista
+IO.inspect(lista)
+# Output: [1, 2, 3, 4]
+
+lista = [1, 2, 3]
+lista = lista ++ [4,5]  # Adiciona o valor 4 no final da lista
+IO.inspect(lista)
+# Output: [1, 2, 3, 4, 5]
+
+
+# remover item da lista
+lista = [1, 2, 3]
+[maca | resto] = lista
+IO.inspect(maca)   # Output: 1 (valor removido)
+IO.inspect(resto)  # Output: [2, 3] (nova lista sem o primeiro valor)
+
+lista = [1, 2, 3, 2, 4]
+lista = List.delete(lista, 2)
+IO.inspect(lista)
+# Output: [1, 3, 2, 4] (remove apenas a primeira ocorrência de 2)
+
+lista = [1, 2, 3, 4]
+lista = List.delete_at(lista, -1)
+IO.inspect(lista)
+# Output: [1, 2, 3] (remove o último elemento)
+
+
+
+
+
 # Enum.at - Captura informação de dentro de um array por indice
 lista = ["maçã", "banana", "laranja", "melancia", "limao"]
 IO.inspect(Enum.at(lista, 1)) # banana
