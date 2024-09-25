@@ -1,3 +1,5 @@
+#### No elixir não existe o array, utilizamos listas encadeadas ou tuplas
+
 lista = [1, 2, 3, 4] # define um list
 IO.puts(Enum.count(lista)) # conta a quantidade
 
