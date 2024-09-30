@@ -1,11 +1,8 @@
-# aula de hoje 
-- condicionais
-# amanha
-- exercicios de logica (condicionais, variáveis, arrays)
-# depois
-- map
-- exercicios de logica
+# aula de hoje
 - loop
+# amanha
+- exercicios de logica
+# depois
 - exercicios de logica
 - tratamento de erros
 # exercicios com tudo que aprendemos
