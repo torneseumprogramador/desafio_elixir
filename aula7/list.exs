@@ -170,3 +170,11 @@ nova_lista = inicio ++ [novo_elemento] ++ fim
 
 IO.inspect(nova_lista)
 # Saída: [1, 3, 10, 4, 6]
+
+
+
+#### Loop com each ####
+numeros = [2,3,5,6,8,9]
+Enum.each(numeros, fn numero ->
+  IO.puts("Numero: #{ numero }")
+end)

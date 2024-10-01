@@ -1,9 +1,10 @@
 # aula de hoje
-- loop
+- loop, modulo e funcao
 # amanha
 - exercicios de logica
 # depois
-- exercicios de logica
-- tratamento de erros
+- Struct
+- Date, Time, DateTime, NaiveDateTime:
+- PID, Referência, Binário (Binary), Binário (Binary), Range, Sigils, Exception
 # exercicios com tudo que aprendemos
 # tuplas e segue os data types
