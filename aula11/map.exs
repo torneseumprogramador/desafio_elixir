@@ -57,6 +57,15 @@ map_atualizado = Map.put(map, :idade, 30)
 IO.inspect(map_atualizado)
 
 
+#### exemplo de atualização de mais de um campo ###
+mapa_original = %{id: 1, nome: "João", idade: 25}
+# Queremos atualizar o nome e a idade
+novos_valores = %{nome: "Ana", idade: 30}
+# Usamos Map.merge/2 para atualizar várias chaves de uma vez
+mapa_atualizado = Map.merge(mapa_original, novos_valores)
+IO.inspect(mapa_atualizado)
+
+
 #### excluindo uma key do map
 # Definindo o map original
 map = %{nome: "João", idade: 25, cidade: "São Paulo"}
