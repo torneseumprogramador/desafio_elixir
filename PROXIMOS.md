@@ -1,7 +1,7 @@
 # aula de hoje
-- exercicios de logica
-# amanha
 - Struct
+# amanha
+- exercicios de logica com struct
 # depois
 - Separar arquivos (import)
 - exercicios de logica
