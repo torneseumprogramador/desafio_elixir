@@ -1,9 +1,8 @@
 # aula de hoje
-- Struct
-# amanha
 - exercicios de logica com struct
-# depois
+# amanha
 - Separar arquivos (import)
+# depois
 - exercicios de logica
 - Date, Time, DateTime, NaiveDateTime:
 - PID, Referência, Binário (Binary), Binário (Binary), Range, Sigils, Exception
