@@ -1,0 +1,4 @@
+. $(brew --prefix asdf)/libexec/asdf.sh
+source ~/.zshrc
+asdf reshim
+elixir --version
