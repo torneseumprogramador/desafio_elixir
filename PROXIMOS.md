@@ -1,5 +1,5 @@
 # aula de hoje
-- PID, Referência, Binário (Binary), Binário (Binary), Range, Sigils, Exception
+- PID, Referência, Binary, Range, Sigils, Exception
 # amanha
 - Programação funcional
 # depois
