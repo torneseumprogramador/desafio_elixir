@@ -1,8 +1,7 @@
 # aula de hoje
-- PID, Referência, Binary, Range, Sigils, Exception
-# amanha
 - Programação funcional
-# depois
+# amanha
 - metaprogramação
+# depois
 # exercicios com tudo que aprendemos
 - Frameworks

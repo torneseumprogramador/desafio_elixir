@@ -14,7 +14,7 @@ end
 IO.puts Math.sum(2, 3)  # Resultado: 5 # função com um unico objetivo
 
 
-### - Expressões sobre Instruções: Em programação funcional, você expressa o "o quê" ao invés do "como", focando em expressões que calculam valores em vez de instruções que alteram o estado do programa.
+### - Expressões sobre Instruções: Em programação funcional, você epressa o "o quê" ao invés do "como", focando em expressões que calculam valores em vez de instruções que alteram o estado do programa.
 
 IO.puts("#### [Modo Iperativo] ####")
 defmodule ExemploImperativo do
