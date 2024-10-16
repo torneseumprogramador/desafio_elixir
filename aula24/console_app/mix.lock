@@ -1,0 +1,3 @@
+%{
+  "lib_aula_mix": {:hex, :lib_aula_mix, "0.1.0", "5967c384d2d889223bbc0fc371563dd48ec3b9e06fda6d199ddd21d2cafa162e", [:mix], [], "hexpm", "c46c2a42b145620d8ca76f3da2ddc02bc02ab1450ff61f001ffcae94d006608d"},
+}
