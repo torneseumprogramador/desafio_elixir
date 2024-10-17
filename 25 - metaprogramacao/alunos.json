@@ -1,0 +1,4 @@
+[
+    {"id": 0, "nome": "João", "cpf": "12345678901", "matricula": "12345"},
+    {"id": 1, "nome": "Maria", "cpf": "09876543210", "matricula": "12345"}
+]
