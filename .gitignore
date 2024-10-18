@@ -27,6 +27,8 @@ erl_crash.dump
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+frases.txt
+
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
