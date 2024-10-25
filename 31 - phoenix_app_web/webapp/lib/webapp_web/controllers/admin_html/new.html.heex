@@ -14,31 +14,36 @@
             <div class="mb-3">
               <label for="nome" class="form-label">Nome</label>
               <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome" >
-              <%= if assigns[:changeset] && @changeset.errors[:nome] do %>
-                <div class="text-danger"><%= Enum.map(@changeset.errors[:nome], fn {msg, _} -> msg end) %></div>
-              <% end %>
             </div>
             
             <!-- Campo Email -->
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email" >
-              <%= if assigns[:changeset] && @changeset.errors[:email] do %>
-                <div class="text-danger"><%= Enum.map(@changeset.errors[:email], fn {msg, _} -> msg end) %></div>
-              <% end %>
             </div>
             
             <!-- Campo Senha -->
             <div class="mb-3">
               <label for="senha" class="form-label">Senha</label>
               <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite a senha" >
-              <%= if assigns[:changeset] && @changeset.errors[:senha] do %>
-                <div class="text-danger"><%= Enum.map(@changeset.errors[:senha], fn {msg, _} -> msg end) %></div>
-              <% end %>
             </div>
             
             <!-- Botão de Enviar -->
+
+            <%= if assigns[:changeset] && @changeset && @changeset.errors != [] do %>
+              <div class="text-danger">
+                <strong>Erro ao cadastrar:</strong>
+                <ul>
+                  <%= for {field, {msg, _}} <- @changeset.errors do %>
+                    <li><%= "#{String.capitalize(to_string(field))}: #{msg}" %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+
             <button type="submit" class="btn btn-primary">Enviar</button>
+            <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()}>
           </form>
         </div>
     </div>

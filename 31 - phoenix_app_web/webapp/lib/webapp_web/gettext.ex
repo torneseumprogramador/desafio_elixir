@@ -5,7 +5,7 @@ defmodule WebappWeb.Gettext do
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import WebappWeb.Gettext
+      use Gettext, backend: WebappWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule WebappWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :webapp
+  use Gettext.Backend, otp_app: :webapp
 end

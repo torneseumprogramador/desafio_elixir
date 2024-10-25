@@ -15,8 +15,8 @@ defmodule Webapp.Administrador do
   def changeset(administrador, attrs) do
     administrador
     |> cast(attrs, [:nome, :email, :senha])
-    |> validate_required([:nome, :email])
-    |> validate_length(:senha, min: 6)
+    |> validate_required([:nome, :email], message: "não pode estar em branco")
+    |> validate_length(:senha, min: 6, message: "deve ter pelo menos 6 caracteres")
     |> put_senha_hash()
   end
 
