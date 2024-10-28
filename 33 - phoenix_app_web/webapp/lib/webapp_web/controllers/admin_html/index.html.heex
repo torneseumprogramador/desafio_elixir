@@ -1,0 +1,41 @@
+<.header />
+<div class="container-fluid">
+    <h3>Administradores</h3>
+    <hr>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Lista de administradores</h6>
+            <a href="/administradores/novo" class="btn btn-primary">Novo</a>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= for administrador <- @administradores do %>
+                  <tr>
+                    <td><%= administrador.id %></td>
+                    <td><%= administrador.nome %></td>
+                    <td><%= administrador.email %></td>
+                    <td>
+                      <a href={"/administradores/#{administrador.id}/editar"} class="btn btn-warning btn-sm">Alterar</a>
+                      <form style="display: inline;" action={"/administradores/#{administrador.id}/excluir"} onsubmit="return confirm('Confirma?')" method="post">
+                        <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()}>
+                        <button class="btn btn-danger btn-sm">Excluir</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

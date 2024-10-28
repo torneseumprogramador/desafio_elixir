@@ -1,0 +1,15 @@
+<.header />
+<div class="container-fluid">
+    <h3>Administradores</h3>
+    <hr>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Novo Administrador</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="container mt-5" style="margin-bottom: 20px;margin-top: 20px!important;">
+          <.administrador_form changeset={@changeset} path={"/administradores/#{@administrador.id}/alterar"} administrador={@administrador} />
+        </div>
+    </div>
+</div>
