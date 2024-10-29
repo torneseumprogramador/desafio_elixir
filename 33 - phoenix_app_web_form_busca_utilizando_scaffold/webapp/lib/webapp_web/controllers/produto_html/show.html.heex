@@ -1,0 +1,24 @@
+<.header_app />
+<div class="container-fluid">
+    <h3>Produto</h3>
+    <hr>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Produto <%= @produto.id %></h6>
+            
+            <.link href={~p"/produtos/#{@produto}/edit"} class="btn btn-primary">
+              <.button>Editar produto</.button>
+            </.link>
+        </div>
+        <.list>
+          <:item title="Nome"><%= @produto.nome %></:item>
+          <:item title="Descricao"><%= @produto.descricao %></:item>
+          <:item title="Quantidade"><%= @produto.quantidade %></:item>
+          <:item title="Preco"><%= @produto.preco %></:item>
+          <:item title="Data validade"><%= @produto.data_validade %></:item>
+        </.list>
+
+        <.back navigate={~p"/produtos"}>Voltar</.back>
+    </div>
+</div>

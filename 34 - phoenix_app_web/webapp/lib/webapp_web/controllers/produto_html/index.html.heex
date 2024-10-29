@@ -1,0 +1,37 @@
+<.header_app />
+
+<div class="container-fluid">
+    <h3>Produtos</h3>
+    <hr>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Lista de produtos</h6>
+            <!--a href="/produtos/novo" class="btn btn-primary">Novo</a-->
+            <.link href={~p"/produtos/new"} class="btn btn-primary">
+              Novo
+            </.link>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <.table id="produtos" rows={@produtos} row_click={&JS.navigate(~p"/produtos/#{&1}")}>
+            <:col :let={produto} label="Nome"><%= produto.nome %></:col>
+            <:col :let={produto} label="Descricao"><%= produto.descricao %></:col>
+            <:col :let={produto} label="Quantidade"><%= produto.quantidade %></:col>
+            <:col :let={produto} label="Preco"><%= produto.preco %></:col>
+            <:col :let={produto} label="Data validade"><%= produto.data_validade %></:col>
+            <:action :let={produto}>
+              <div class="sr-only">
+                <.link navigate={~p"/produtos/#{produto}"}>Show</.link>
+              </div>
+              <.link navigate={~p"/produtos/#{produto}/edit"}>Edit</.link>
+            </:action>
+            <:action :let={produto}>
+              <.link href={~p"/produtos/#{produto}"} method="delete" data-confirm="Are you sure?">
+                Delete
+              </.link>
+            </:action>
+          </.table>
+        </div>
+    </div>
+</div>
