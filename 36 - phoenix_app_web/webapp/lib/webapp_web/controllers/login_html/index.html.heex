@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                        <img src="/public/images/logo.png">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Bem vindo ao desafio de Elixir!</h1>
+                            </div>
+                            <form class="user" action="/login" method="post">
+                                <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()}>
+
+                                <div class="form-group">
+                                    <input type="email" required class="form-control form-control-user"
+                                        id="login_email" name="login[email]" value="danilo@teste.com"
+                                        placeholder="Digite o seu email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" required class="form-control form-control-user"
+                                        id="login_senha" name="login[senha]" value="123456" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input type="checkbox" class="custom-control-input" name="login[mais_tempo]" id="login_mais_tempo">
+                                        <label class="custom-control-label" for="login_mais_tempo">Me deixe logado por mais tempo</label>
+                                    </div>
+                                </div>
+
+                                <%= for {_type, message} <- @flash do %>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <%= message %>
+                                    </div>
+                                <% end %>
+
+                                <button class="btn btn-primary btn-user btn-block">
+                                    Login
+                                </button>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/esqueceu-senha">Esqueceu senha</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="/cadastro">Criar conta</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
