@@ -1,0 +1,95 @@
+<div id="wrapper">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <img src="/public/images/logo.png" style="width: 100px;">
+          </div>
+          <div class="sidebar-brand-text mx-3">Elixir <sup>Desafio</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class={"nav-item #{active_class(@conn, "/dashboard")}"}>
+          <a class="nav-link" href="/dashboard">
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Nav Item - Tables -->
+      <li class={"nav-item #{active_class(@conn, "/administradores")}"}>
+          <a class="nav-link" href="/administradores">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Administradores</span></a>
+      </li>
+
+      <li class={"nav-item #{active_class(@conn, "/produtos")}"}>
+        <a class="nav-link" href="/produtos">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Produtos</span></a>
+      </li>
+
+      <li class={"nav-item #{active_class(@conn, "/fornecedores")}"}>
+        <a class="nav-link" href="/fornecedores">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Fornecedores</span></a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="/sair">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Sair</span></a>
+      </li>
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+      <!-- Sidebar Message -->
+      <div class="sidebar-card d-none d-lg-flex">
+          <img class="sidebar-card-illustration mb-2" src="/public/images/undraw_rocket.svg" alt="...">
+          <p class="text-center mb-2"><strong>Desafio Elixir</strong> - Código criado com alunos da comunidade do torne-se um programador</p>
+      </div>
+
+  </ul>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+        <%= for {type, message} <- @flash do %>
+            <div class={"alert #{flash_class(type)} alert-dismissible fade show"} role="alert">
+            <%= message %>
+            </div>
+        <% end %>
+        <.header_app current_adm={@current_adm} />
+        <%= @inner_content %>
+    </div>
+    <!-- End of Content Wrapper -->
+
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright © Desafio Elixir 2024</span><br>
+                <span>Para mais acesse <a href="https://www.torneseumprogramador.com.br/cursos/desafio_elixir" target="_blank">https://www.torneseumprogramador.com.br/cursos/desafio_elixir</a></span>
+            </div>
+        </div>
+    </footer>
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+  </a>
+</div>
