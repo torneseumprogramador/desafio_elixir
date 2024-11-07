@@ -31,11 +31,18 @@ defmodule WebappWeb.Router do
     scope "/" do
       pipe_through :api_authenticated
       get "/refresh_token", LoginController, :new_token
+
       get "/administradores", AdminController, :index
       get "/administradores/:id", AdminController, :get
       post "/administradores", AdminController, :create
       put "/administradores/:id", AdminController, :update
       delete "/administradores/:id", AdminController, :delete
+
+      get "/produtos", ProdutoController, :index
+      get "/produtos/:id", ProdutoController, :get
+      post "/produtos", ProdutoController, :create
+      put "/produtos/:id", ProdutoController, :update
+      delete "/produtos/:id", ProdutoController, :delete
     end
 
     match :*, "/*path", FallbackController, :call

@@ -2,6 +2,7 @@ defmodule Webapp.Fornecedores.Fornecedor do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:id, :nome, :observacao]}
   schema "fornecedores" do
     field :nome, :string
     field :observacao, :string

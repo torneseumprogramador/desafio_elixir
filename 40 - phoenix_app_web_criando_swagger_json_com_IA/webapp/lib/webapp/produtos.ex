@@ -21,6 +21,47 @@ defmodule Webapp.Produtos do
     Repo.all(Produto)
   end
 
+
+  def list_produtos_paginado(query, quantidade_por_pagina \\ 2, pagina \\ 1) do
+    pattern = "%#{query}%"
+
+    # Calcula o offset com base na página atual e quantidade por página
+    offset = (pagina - 1) * quantidade_por_pagina
+
+    # Obter o total de registros que correspondem ao filtro
+    total_registros =
+      Repo.one(
+        from a in Produto,
+        where: ilike(a.nome, ^pattern) or ilike(a.descricao, ^pattern),
+        select: count(a.id)
+      )
+
+    # Calcular a quantidade de páginas com base no total de registros e quantidade por página
+    quantidade_de_paginas =
+      if total_registros > 0 do
+        Float.ceil(total_registros / quantidade_por_pagina) |> round()
+      else
+        1
+      end
+
+    # Obter os registros da página atual
+    registros =
+      Repo.all(
+        from a in Produto,
+        where: ilike(a.nome, ^pattern) or ilike(a.descricao, ^pattern),
+        limit: ^quantidade_por_pagina,
+        offset: ^offset
+      )
+
+    # Retornar a estrutura JSON desejada
+    %{
+      pagina_corrente: pagina,
+      quantidade_de_registros: total_registros,
+      registros: registros,
+      quantidade_de_paginas: quantidade_de_paginas
+    }
+  end
+
   @doc """
   Gets a single produto.
 
@@ -53,6 +94,18 @@ defmodule Webapp.Produtos do
     %Produto{}
     |> Produto.changeset(attrs)
     |> Repo.insert()
+  end
+
+
+  def delete_produto_by_id(id) do
+    produto = Repo.get(Produto, id)
+
+    case produto do
+      nil ->
+        {:error, :not_found}
+      _ ->
+        delete_produto(produto)
+    end
   end
 
   @doc """

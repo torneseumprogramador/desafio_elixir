@@ -33,6 +33,7 @@ defmodule Webapp.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.14"},
+      {:cors_plug, "~> 3.0"},
       {:bcrypt_elixir, "~> 3.0"},
       {:tzdata, "~> 1.1"},
       {:phoenix_ecto, "~> 4.5"},
