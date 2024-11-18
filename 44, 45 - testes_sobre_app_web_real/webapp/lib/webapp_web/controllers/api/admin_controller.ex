@@ -34,8 +34,16 @@ defmodule WebappWeb.Controllers.Api.AdminController do
       {:error, changeset} ->
         conn
         |> put_status(:bad_request)
-        |> json(changeset)
+        |> json(%{errors: translate_errors(changeset)})
     end
+  end
+
+  defp translate_errors(changeset) do
+    Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+      Enum.reduce(opts, msg, fn {key, value}, acc ->
+        String.replace(acc, "%{#{key}}", to_string(value))
+      end)
+    end)
   end
 
   def update(conn, %{"id" => id} = params) do

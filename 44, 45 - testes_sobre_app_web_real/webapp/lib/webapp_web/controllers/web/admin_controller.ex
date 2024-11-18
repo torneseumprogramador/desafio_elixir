@@ -100,7 +100,7 @@ defmodule WebappWeb.Controllers.Web.AdminController do
     case Administradores.delete_administrador_by_id(id) do
       {:ok, _administrador} ->
         conn
-        |> put_flash(:info, "Administrador criado com sucesso!")
+        |> put_flash(:info, "Administrador apagado com sucesso!")
         |> redirect(to: "/administradores")
 
       {:error, _} ->
