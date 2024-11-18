@@ -1,6 +1,8 @@
 defmodule Webapp.Administradores.AdministradorTest do
   use Webapp.DataCase, async: true
 
+  # ==== testando schema em um padrão de test de unidade =====
+
   alias Webapp.Administradores.Administrador
 
   describe "changeset/2" do

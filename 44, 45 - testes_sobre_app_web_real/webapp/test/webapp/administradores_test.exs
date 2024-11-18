@@ -2,6 +2,8 @@ defmodule Webapp.AdministradoresTest do
   use Webapp.DataCase, async: true
   import Webapp.AdministradoresFixtures
 
+  # ==== Teste de integração com banco de dados =====
+
   alias Webapp.Administradores
   alias Webapp.Administradores.Administrador
 

@@ -2,6 +2,8 @@ defmodule Webapp.AdministradoresFixtures do
   alias Webapp.Administradores.Administrador
   alias Webapp.Repo
 
+  # ==== Serve para alimentar banco de dados =====
+
   @doc """
   Cria um administrador com os atributos fornecidos ou valores padrão.
   """

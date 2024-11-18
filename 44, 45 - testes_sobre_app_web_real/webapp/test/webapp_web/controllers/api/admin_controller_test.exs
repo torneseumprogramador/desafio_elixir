@@ -4,6 +4,9 @@ defmodule WebappWeb.Controllers.Api.AdminControllerTest do
   alias Webapp.Administradores
   import Webapp.AdministradoresFixtures
 
+  # ==== Teste de integração e comportamento da api =====
+
+
   setup %{conn: conn} do
     # Cria um administrador de exemplo
     admin = administrador_fixture(%{nome: "Admin1", email: "admin1@example.com"})
