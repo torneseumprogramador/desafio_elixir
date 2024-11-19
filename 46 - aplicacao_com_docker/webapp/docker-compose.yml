@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webapp_container
+    ports:
+      - "4000:4000"
+    environment:
+      DATABASE_URL: "ecto://postgres:postgres@db:5432/webapp_db"
+      SECRET_KEY_BASE: "Y7KvMfNgF8c3x9GRbTkpjq5NdS2aKy0cT0N5DdCMf0LQFnX5BgWxDpt57NKT2h9f"
+      PORT: 4000
+    depends_on:
+      - db
+    command: >
+      sh -c "./entrypoint.sh"
+
+  db:
+    image: postgres:15
+    container_name: postgres_container
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "webapp_db"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data

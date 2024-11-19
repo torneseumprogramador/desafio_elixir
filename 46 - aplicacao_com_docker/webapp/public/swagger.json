@@ -1,0 +1,475 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "WebappWeb API",
+      "description": "Esta API foi desenvolvida como parte do desafio de Elixir com Phoenix, apresentado no curso disponível em Tornese um Programador. A API permite o gerenciamento de administradores, autenticação e geração de tokens, com endpoints que exemplificam boas práticas de desenvolvimento em Elixir e Phoenix.\n\nToda a gravação do treinamento está disponível em: [Desafio de Elixir com Phoenix](https://www.torneseumprogramador.com.br/cursos/desafio_elixir).\n\n**Autor**: Danilo Aparecido - Professor e desenvolvedor experiente, dedicado a capacitar novos programadores através de práticas e desafios reais.",
+      "version": "1.0.0",
+      "contact": {
+        "name": "Danilo Aparecido",
+        "url": "https://www.torneseumprogramador.com.br"
+      }
+    },
+    "host": "localhost:4000",
+    "basePath": "/api",
+    "schemes": ["http"],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Mensagem de boas-vindas",
+          "description": "Endpoint inicial para verificar o status da API.",
+          "responses": {
+            "200": {
+              "description": "Mensagem de boas-vindas",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "summary": "Autenticação de Administrador",
+          "description": "Endpoint para autenticação, retornando um token JWT.",
+          "parameters": [
+            {
+              "name": "credenciais",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "senha": { "type": "string" }
+                },
+                "required": ["email", "senha"]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Token JWT gerado",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": { "type": "string" }
+                }
+              }
+            },
+            "400": {
+              "description": "Email ou senha inválidos"
+            }
+          }
+        }
+      },
+      "/refresh_token": {
+        "get": {
+          "summary": "Renovação de Token",
+          "description": "Gera um novo token JWT para o administrador autenticado.",
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Novo token JWT gerado",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": { "type": "string" }
+                }
+              }
+            },
+            "401": {
+              "description": "Não autorizado"
+            }
+          }
+        }
+      },
+      "/administradores": {
+        "get": {
+          "summary": "Listar Administradores",
+          "description": "Retorna uma lista de administradores com paginação e filtro opcional.",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "type": "string",
+              "description": "Filtro para nome ou email do administrador"
+            },
+            {
+              "name": "pagina",
+              "in": "query",
+              "type": "integer",
+              "default": 1,
+              "description": "Número da página para paginação"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de administradores paginada",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pagina_corrente": { "type": "integer" },
+                  "quantidade_de_registros": { "type": "integer" },
+                  "quantidade_de_paginas": { "type": "integer" },
+                  "registros": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/Administrador" }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Não autorizado"
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar Administrador",
+          "description": "Cria um novo administrador.",
+          "parameters": [
+            {
+              "name": "administrador",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/AdministradorDTO"
+              }
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Administrador criado com sucesso",
+              "schema": {
+                "$ref": "#/definitions/Administrador"
+              }
+            },
+            "400": {
+              "description": "Erro nos dados de entrada"
+            }
+          }
+        }
+      },
+      "/administradores/{id}": {
+        "get": {
+          "summary": "Obter Administrador",
+          "description": "Retorna informações de um administrador específico.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados do administrador",
+              "schema": {
+                "$ref": "#/definitions/Administrador"
+              }
+            },
+            "404": {
+              "description": "Administrador não encontrado"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar Administrador",
+          "description": "Atualiza informações de um administrador existente.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "administrador",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/AdministradorDTO"
+              }
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Administrador atualizado com sucesso",
+              "schema": {
+                "$ref": "#/definitions/Administrador"
+              }
+            },
+            "400": {
+              "description": "Erro nos dados de entrada"
+            },
+            "404": {
+              "description": "Administrador não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir Administrador",
+          "description": "Remove um administrador do sistema.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Administrador excluído com sucesso"
+            },
+            "404": {
+              "description": "Administrador não encontrado"
+            }
+          }
+        }
+      },
+      "/produtos": {
+        "get": {
+          "summary": "Listar Produtos",
+          "description": "Retorna uma lista de produtos com paginação e filtro opcional.",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "type": "string",
+              "description": "Filtro para nome ou descrição do produto"
+            },
+            {
+              "name": "pagina",
+              "in": "query",
+              "type": "integer",
+              "default": 1,
+              "description": "Número da página para paginação"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de produtos paginada",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pagina_corrente": { "type": "integer" },
+                  "quantidade_de_registros": { "type": "integer" },
+                  "quantidade_de_paginas": { "type": "integer" },
+                  "registros": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/Produto" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar Produto",
+          "description": "Cria um novo produto.",
+          "parameters": [
+            {
+              "name": "produto",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/ProdutoDTO"
+              }
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Produto criado com sucesso",
+              "schema": {
+                "$ref": "#/definitions/Produto"
+              }
+            },
+            "400": {
+              "description": "Erro nos dados de entrada"
+            }
+          }
+        }
+      },
+      "/produtos/{id}": {
+        "get": {
+          "summary": "Obter Produto",
+          "description": "Retorna informações de um produto específico.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados do produto",
+              "schema": {
+                "$ref": "#/definitions/Produto"
+              }
+            },
+            "404": {
+              "description": "Produto não encontrado"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar Produto",
+          "description": "Atualiza informações de um produto existente.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "produto",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/ProdutoDTO"
+              }
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto atualizado com sucesso",
+              "schema": {
+                "$ref": "#/definitions/Produto"
+              }
+            },
+            "400": {
+              "description": "Erro nos dados de entrada"
+            },
+            "404": {
+              "description": "Produto não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir Produto",
+          "description": "Remove um produto do sistema.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Produto excluído com sucesso"
+            },
+            "404": {
+              "description": "Produto não encontrado"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "AdministradorDTO": {
+        "type": "object",
+        "properties": {
+          "nome": { "type": "string" },
+          "email": { "type": "string" },
+          "senha": { "type": "string" }
+        },
+        "required": ["nome", "email"]
+      },
+      "Administrador": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "nome": { "type": "string" },
+          "email": { "type": "string" }
+        },
+        "required": ["nome", "email"]
+      },
+      "ProdutoDTO": {
+        "type": "object",
+        "properties": {
+          "nome": { "type": "string" },
+          "descricao": { "type": "string" },
+          "quantidade": { "type": "integer" },
+          "preco": { "type": "number", "format": "float" }
+        },
+        "required": ["nome", "descricao", "quantidade", "preco"]
+      },
+      "Produto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "nome": { "type": "string" },
+          "descricao": { "type": "string" },
+          "quantidade": { "type": "integer" },
+          "preco": { "type": "number", "format": "float" }
+        },
+        "required": ["id", "nome", "descricao", "quantidade", "preco"]
+      }
+    },
+    "securityDefinitions": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+  

@@ -1,0 +1,24 @@
+# Ignorar arquivos e diretórios que não são necessários para o build do Docker
+
+# Configurações locais e arquivos de sistema
+*.swp
+*.bak
+*.tmp
+*.log
+.DS_Store
+.elixir_ls
+
+# Dependências e arquivos de build
+_build/
+deps/
+
+# Arquivos de ambiente e configurações locais
+.env
+*.secret
+
+# Arquivos de editor/IDE
+.idea/
+.vscode/
+
+# Diretórios do sistema operacional
+node_modules/
